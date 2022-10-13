@@ -1,0 +1,33 @@
+//Trapping Rain water by DY
+
+class Solution {
+    //FIND LEVELS AND SOLVE
+    public int trap(int[] height) {
+
+        int n = height.length;
+
+        int[] maxLeft = new int[n];
+        int[] maxRight = new int[n];
+
+        // GENERATE MAXLEFT - MAX(Prev, Current)
+        maxLeft[0] = height[0];
+        for(int i =1; i<n-1 ;i++){
+            maxLeft[i] = Math.max(height[i], maxLeft[i-1]);
+        }
+
+        // GENERATE MAXRIGHT - MAX(Current, next)
+        maxRight[n-1] = height[n-1];
+        for(int i=n-2; i>=0 ;i--){
+            maxRight[i] = Math.max(height[i], maxRight[i+1]);
+        }
+
+        int sum = 0; //DONT INCLUDE FIRST & LAST ITEM SINCE WATER WILL OVERFLOW
+        for(int i=1; i< n-1; i++){
+            sum+= Math.min(maxLeft[i], maxRight[i]) - height[i] ;
+
+        }
+
+        return sum;
+        
+    }
+}
