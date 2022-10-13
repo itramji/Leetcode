@@ -1,0 +1,35 @@
+class Solution {
+    //FIND Trapped water using 2 pointers
+    public int trap(int[] height) {
+
+        int n = height.length;
+
+        int start = 0;
+        int end = n-1;
+
+        int water =0;
+        int maxL = 0;
+        int maxR = 0;
+
+        while(start<end){
+            if(height[start]<=height[end]){
+                if(height[start]<maxL){
+                    water+=maxL-height[start];
+                }else{
+                    maxL = height[start];
+                }
+                start++;
+            }else{
+                if(height[end]<maxR){
+                    water+=maxR-height[end];
+                }else{
+                    maxR = height[end];
+                }
+                end--;
+            }
+        }
+
+        return water;
+        
+    }
+}
