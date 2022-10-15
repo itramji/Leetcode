@@ -1,0 +1,18 @@
+class Solution {
+    //TWO POINTER - I,J
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        int j=s.length();
+        for(int i = s.length()-1; i>=0;i--){
+           if(s.charAt(i)==' ') { //MOVE POINTER UNTIL CHAR IS NOT SPACE FROM END
+                j = i;
+           }else if(i==0 || s.charAt(i-1)==' '){ //FND IF WORD SPACE OR STRING START
+               if(sb.length()!=0){
+                   sb.append(" "); //APPEND SPACE AFTER FIRST WORD
+               }
+               sb.append(s.substring(i, j));
+           }
+        }
+        return sb.toString();  
+    }
+}
