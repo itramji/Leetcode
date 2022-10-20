@@ -1,0 +1,33 @@
+class Solution {
+    public int[][] construct2DArray(int[] arr, int m, int n) {
+        
+        // able to convert only if row*colum == 1D arr length
+        if(arr.length != m*n) return new int[0][0];
+        
+        int len = arr.length;
+        
+        int[][] mat = new int[m][n];
+        
+        for(int i =0;i<len;i++){
+            mat[i/n][i%n] = arr[i];
+        }    
+        
+        return mat;
+        
+    }
+}
+
+/*
+
+Explanation :
+
+     For  m=2,n=2
+    
+     i      i/n         i%n        [ ][ ]
+        
+    0]      0/2       0%2          [0][0]
+    1]      1/2       1%2          [0][1]
+    2]      2/2       2%2          [1][0]
+    3]      3/2       3%2          [1][1]
+    
+*/
