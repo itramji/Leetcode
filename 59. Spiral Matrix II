@@ -1,0 +1,41 @@
+class Solution {
+    // 4 Direction move 
+    public int[][] generateMatrix(int n) {
+        
+        int[][] mat = new int[n][n];
+        
+        if(n<0) return mat;
+        
+        int top =0;
+        int down =n-1;
+        int left =0;
+        int right =n-1;
+        
+        int fill = 1;
+        
+        while(top<=down && left<=right){
+            for(int i=left;i<=right;i++){ //running dir left --> right
+                mat[top][i] = fill++;     //but fill top
+            }
+            top++;                        // increment top
+            
+            for(int i=top;i<=down;i++){   // top -> down
+                mat[i][right] = fill++;   // fill right
+            }
+            right--;                      // decrease right
+            
+            for(int i=right;i>=left;i--){  // right -> left
+                mat[down][i] = fill++;     // fill down
+            }
+            down--;                        // decrease down
+            
+             for(int i=down;i>=top;i--){   // down -> top
+                mat[i][left] = fill++;     // fill left
+            }
+            left++;                        // increment left
+        }
+        
+        return mat;
+        
+    }
+}
